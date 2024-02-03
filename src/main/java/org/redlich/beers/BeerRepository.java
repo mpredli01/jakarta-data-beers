@@ -16,8 +16,7 @@ import java.util.stream.Stream;
 
 @Repository
 public interface BeerRepository extends DataRepository<Beer, Integer> {
-
-    @OrderBy("name")
+    
     Stream<Beer> findAll();
 
     Set<Beer> findByName(String beer);

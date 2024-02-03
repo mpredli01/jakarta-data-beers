@@ -33,7 +33,6 @@ public interface BrewerRepository extends DataRepository<Brewer, Integer> {
 
     Page<Brewer> findByBrewer(String brewer, Pageable pageRequest);
 
-    @OrderBy("name")
     Stream<Brewer> findAll();
 
     void deleteByBrewerId(int brewerId);
