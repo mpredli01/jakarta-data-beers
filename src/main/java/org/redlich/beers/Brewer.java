@@ -24,6 +24,10 @@ public class Brewer {
     private String state;
 
     public Brewer() {
+        this.id = 0;
+        this.name = "{ brewer name }";
+        this.city = "{ brewer city }";
+        this.state = "{ brewer state }";
     }
 
     private Brewer(int id, String name, String city, String state) {

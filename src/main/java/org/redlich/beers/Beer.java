@@ -28,6 +28,11 @@ public class Beer {
     private double abv;
 
     public Beer() {
+        id = 0;
+        name = "{ beer name }";
+        type = BeerType.ALE;
+        brewerId = 0;
+        abv = 10.0;
     }
 
     private Beer(int id, String name, BeerType type, int brewerId, double abv) {
@@ -75,14 +80,6 @@ public class Beer {
      */
     public double getAbv() {
         return abv;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override
