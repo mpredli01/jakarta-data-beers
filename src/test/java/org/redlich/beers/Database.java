@@ -17,7 +17,7 @@ public enum Database {
     }
 
     public String getConnectionString() {
-        return connectionStringOf(mongoRunningProcess.current().getServerAddress());
+        throw new UnsupportedOperationException("to be implemented!");
     }
 
     private String connectionStringOf(ServerAddress serverAddress) {
