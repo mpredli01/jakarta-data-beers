@@ -12,8 +12,6 @@ public enum Database {
 
     INSTANCE;
 
-    }
-
     public MongoClient getMongoClient() {
         return MongoClients.create(getConnectionString());
     }
