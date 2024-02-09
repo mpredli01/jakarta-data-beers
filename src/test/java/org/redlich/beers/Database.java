@@ -12,12 +12,16 @@ public enum Database {
 
     INSTANCE;
 
-    public MongoClient getMongoClient() {
-        return MongoClients.create(getConnectionString());
+    private final TransitionWalker.ReachedState<RunningMongodProcess> mongoRunningProcess;
+
+    Database() {
+        this.mongoRunningProcess = Mongod
+                .instance()
+                .start(Version.Main.V7_0);
     }
 
     public String getConnectionString() {
-        throw new UnsupportedOperationException("to be implemented!");
+        return connectionStringOf(mongoRunningProcess.current().getServerAddress());
     }
 
     private String connectionStringOf(ServerAddress serverAddress) {
