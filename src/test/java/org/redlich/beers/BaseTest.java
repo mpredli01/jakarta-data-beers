@@ -27,7 +27,7 @@ import org.jboss.weld.junit5.auto.EnableAutoWeld;
 public abstract class BaseTest {
 
     static {
-        System.setProperty(MongoDBDocumentConfigurations.HOST.get(), Database.INSTANCE.getConnectionString());
+        // System.setProperty(MongoDBDocumentConfigurations.HOST.get(), Database.INSTANCE.getConnectionString());
     }
 
 }

@@ -1,11 +1,16 @@
 #  Craft Beer Database Application
-## Getting Started with Jakarta NoSQL and MongoDB
+## An example application using Jakarta Data, Jakarta Data and MongoDB
+
+Contributors:
+
+* Max Arruda
+* Michael Redlich
+
+The [Jakarta Data](https://jakarta.ee/specifications/data/) specification provides an API that allows easy access to database technologies. It can split the persistence from the model with several features, such as the ability to compose custom query methods on a `Repository` interface where the framework will implement it.
 
 The [Jakarta NoSQL](https://jakarta.ee/specifications/nosql/) specification defines a set of APIs to provide a standard implementation for most NoSQL databases. Jakarta NoSQL is considered "one API for many NoSQL databases" as it supports the four types of NoSQL databases: column family, document, graph and key-value.
 
-This presentation will provide an introduction to Jakarta NoSQL and [Eclipse JNoSQL](https://projects.eclipse.org/projects/technology.jnosql), the compatible implementation to the specification, followed by a demonstration of a MongoDB application built with Jakarta NoSQL.
-
-This Jakarta NoSQL and MongoDB application that accompanies the presentation, [Getting Started with Jakarta NoSQL and MongoDB](https://redlich.net/pdf/portfolio/getting-started-with-jakarta-nosql-and-mongodb.pdf) to demonstrate how to get started building a MongoDB database application with the Jakarta NoSQL specification.
+This Jakarta Data, Jakarta NoSQL and MongoDB application that accompanies the presentation, [Jakarta EE 11: Going Beyond the Era of Java EE](https://redlich.net/pdf/portfolio/jakarta-ee-11-going-beyond-the-era-of-java-ee.pdf) to demonstrate how to get started building a MongoDB database application with the Jakarta Data and Jakarta NoSQL specifications.
 
 ## Jakarta NoSQL
 
@@ -42,17 +47,34 @@ Follow the instructions in the [installation guide](https://docs.mongodb.com/man
 
 ## Clone the Repository
 
-`git clone https://github.com/mpredli01/jnosql-beers.git`
+`git clone https://github.com/mpredli01/jakarta-data-beers.git`
 
-## Clean, compile and execute the application
+## Clean, compile and package the application as a WAR file
 
-`mvn clean compile`
+`mvn clean compile package`
 
-`mvn exec:java -Dexec.mainClass=org.redlich.beers.BeerApp`
+## Execute the application in Payara Micro
+
+`java -jar payara-micro-6.2024.1.jar /usr/local/apps/jakartaee-apps/jakarta-data-beers/target/beers.war`
+
+## Add a beer to the database
+
+`curl -X POST -H "Content-Type: application/json" -d '{"_id": 3, "name": "Russian Imperial Stout", "type": "STOUT", "brewer_id": 1, "abv": 10.2}' http://10.0.0.229:8080/beers/db/beer/3`
+
+## Add a brewer to the database
+
+`curl -X POST -H "Content-Type: application/json" -d '{"_id": 3, "name": "Maine Beer Compnay", "city": "Freeport", "state": "Maine" }' http://10.0.0.229:8080/beers/db/brewer/{id}`
+
+## Delete a beer from the database
+
+`curl -X DELETE -H http://10.0.0.229:8080/beers/db/beer/{id}`
+
+## Delete a brewer from the database
+
+`curl -X DELETE -H http://10.0.0.229:8080/beers/db/brewer/{id}`
 
 ## Resources
 
+* Jakarta Data [specification](https://jakarta.ee/specifications/data/)
 * Jakarta NoSQL [specification](https://jakarta.ee/specifications/nosql/)
 * JNoSQL [website](http://www.jnosql.org/)
-* `jnosql-beers` GitHub [repository](https://github.com/mpredli01/jnosql-beers)
-* Getting Started with Jakarta NoSQL and MongoDB [slide deck](https://redlich.net/pdf/portfolio/getting-started-with-jakarta-nosql-and-mongodb.pdf)

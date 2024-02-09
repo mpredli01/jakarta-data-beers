@@ -9,15 +9,20 @@ public enum Database {
 
     INSTANCE;
 
+    /*
     private final MongoDBContainer mongodb =
             new MongoDBContainer("mongo:latest")
                     .withExposedPorts(27017)
                     .waitingFor(Wait.defaultWaitStrategy());
+     */
 
+    /*
     {
         mongodb.start();
     }
+     */
 
+    /*
     public MongoClient getMongoClient() {
         return MongoClients.create(mongodb.getConnectionString());
     }
@@ -25,4 +30,5 @@ public enum Database {
     public String getConnectionString() {
         return mongodb.getHost() + ":" + mongodb.getFirstMappedPort();
     }
+     */
 }

@@ -18,15 +18,19 @@ import java.util.stream.Stream;
 @Repository
 public interface BeerRepository extends DataRepository<Beer, Integer> {
 
+    Stream<Beer> findAll();
+
+    Optional<Beer> findById(int id);
+
+    Stream<Beer> findByBrewerIdIn(List<Integer> brewerIds);
+
+    Page<Beer> findByBrewerIdIn(List<Integer> brewerIds, Pageable pageable);
+
     @Save
     Beer save(@Valid Beer beer);
 
     @Delete
     void remove(Beer beer);
-
-    Stream<Beer> findAll();
-
-    Optional<Beer> findById(int id);
 
     @Query("select * from Beer where name = @name")
     Set<Beer> query(@Param("name") String name);
@@ -36,9 +40,4 @@ public interface BeerRepository extends DataRepository<Beer, Integer> {
 
     @Query("delete from Beer where brewerId = @brewerId")
     void deleteByBrewerId(@Param("brewerId") int brewerId);
-
-    Stream<Beer> findByBrewerIdIn(List<Integer> brewerIds);
-
-    Page<Beer> findByBrewerIdIn(List<Integer> brewerIds, Pageable pageable);
-}
-
+    }

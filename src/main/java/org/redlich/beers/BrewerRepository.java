@@ -14,22 +14,22 @@ import java.util.stream.Stream;
 
 @Repository
 public interface BrewerRepository extends DataRepository<Brewer, Integer> {
-    @Save
-    Brewer save(@Valid Brewer brewer);
 
     Stream<Brewer> findAll();
 
     Optional<Brewer> findById(int id);
+
+    Stream<Brewer> findByNameLike(String city);
+
+    Page<Brewer> findByNameLike(String name, Pageable pageable);
+
+    @Save
+    Brewer save(@Valid Brewer brewer);
 
     @Delete
     void remove(Brewer brewer);
 
     @Query("delete from Brewer")
     void deleteAll();
-
-    Stream<Brewer> findByNameLike(String city);
-
-    Page<Brewer> findByNameLike(String name, Pageable pageable);
-
-}
+    }
 
