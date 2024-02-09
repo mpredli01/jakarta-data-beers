@@ -12,34 +12,8 @@ public enum Database {
 
     INSTANCE;
 
-<<<<<<< HEAD
-    /*
-    private final MongoDBContainer mongodb =
-            new MongoDBContainer("mongo:latest")
-                    .withExposedPorts(27017)
-                    .waitingFor(Wait.defaultWaitStrategy());
-     */
-
-    /*
-    {
-        mongodb.start();
-=======
-
-    private final TransitionWalker.ReachedState<RunningMongodProcess> mongoRunningProcess;
-
-    Database() {
-        this.mongoRunningProcess = Mongod
-                .instance()
-                .start(Version.Main.V7_0);
->>>>>>> 3208852f6bc09f4c07165c5c65df166e7bc57f35
     }
-     */
 
-<<<<<<< HEAD
-    /*
-=======
-
->>>>>>> 3208852f6bc09f4c07165c5c65df166e7bc57f35
     public MongoClient getMongoClient() {
         return MongoClients.create(getConnectionString());
     }
@@ -53,5 +27,4 @@ public enum Database {
                 serverAddress.getHost(),
                 serverAddress.getPort());
     }
-     */
 }
