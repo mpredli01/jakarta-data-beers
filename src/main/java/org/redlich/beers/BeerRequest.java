@@ -7,6 +7,7 @@ public record BeerRequest(String name, BeerType type, int brewerId, double abv) 
                 .id(id)
                 .name(name)
                 .type(type)
+                .brewerId(brewerId)
                 .abv(abv)
                 .build();
     }
