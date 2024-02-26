@@ -8,6 +8,12 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 
+/**
+ * <p>Brewer class.</p>
+ *
+ * @author mpredli01
+ * @version $Id: $Id
+ */
 @Entity
 public class Brewer {
     @Id
@@ -23,6 +29,9 @@ public class Brewer {
     @Column
     private String state;
 
+    /**
+     * <p>Constructor for Brewer.</p>
+     */
     public Brewer() {
         this.id = 0;
         this.name = "{ brewer name }";
@@ -37,22 +46,43 @@ public class Brewer {
         this.state = state;
     }
 
+    /**
+     * <p>Getter for the field <code>id</code>.</p>
+     *
+     * @return a int
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * <p>Getter for the field <code>name</code>.</p>
+     *
+     * @return a {@link java.lang.String} object
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * <p>Getter for the field <code>city</code>.</p>
+     *
+     * @return a {@link java.lang.String} object
+     */
     public String getCity() {
         return city;
     }
 
+    /**
+     * <p>Getter for the field <code>state</code>.</p>
+     *
+     * @return a {@link java.lang.String} object
+     */
     public String getState() {
         return state;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Brewer { " +
@@ -63,6 +93,7 @@ public class Brewer {
                 " }\n";
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,11 +105,17 @@ public class Brewer {
                 && Objects.equals(state, brewer.state);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return Objects.hash(id, name, city, state);
     }
 
+    /**
+     * <p>builder.</p>
+     *
+     * @return a {@link org.redlich.beers.Brewer.BrewerBuilder} object
+     */
     public static BrewerBuilder builder() {
         return new BrewerBuilder();
     }

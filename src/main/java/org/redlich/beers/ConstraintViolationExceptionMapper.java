@@ -9,9 +9,16 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 
+/**
+ * <p>ConstraintViolationExceptionMapper class.</p>
+ *
+ * @author mpredli01
+ * @version $Id: $Id
+ */
 @Provider
 @ApplicationScoped
 public class ConstraintViolationExceptionMapper implements ExceptionMapper<ConstraintViolationException> {
+    /** {@inheritDoc} */
     @Override
     public Response toResponse(ConstraintViolationException e) {
         return Response.status(Response.Status.BAD_REQUEST)

@@ -9,6 +9,12 @@ import jakarta.ws.rs.core.MediaType;
 
 import java.util.List;
 
+/**
+ * <p>BrewerResources class.</p>
+ *
+ * @author mpredli01
+ * @version $Id: $Id
+ */
 @Path("brewer")
 @ApplicationScoped
 @Consumes(MediaType.APPLICATION_JSON)
@@ -18,6 +24,12 @@ public class BrewerResources {
     @Inject
     BrewerService brewerService;
 
+    /**
+     * <p>findById.</p>
+     *
+     * @param id a int
+     * @return a {@link org.redlich.beers.BrewerResponse} object
+     */
     @GET
     @Path("/{id}")
     public BrewerResponse findById(@PathParam("id") int id) {
@@ -26,6 +38,11 @@ public class BrewerResources {
                 .orElseThrow(() -> new NotFoundException());
         }
 
+    /**
+     * <p>listBrewers.</p>
+     *
+     * @return a {@link java.util.List} object
+     */
     @GET
     public List<BrewerResponse> listBrewers() {
         return brewerService.listBrewers()
@@ -33,6 +50,12 @@ public class BrewerResources {
                 .toList();
         }
 
+    /**
+     * <p>listBrewerByName.</p>
+     *
+     * @param name a {@link java.lang.String} object
+     * @return a {@link java.util.List} object
+     */
     @GET
     @Path("/brewer/{name}")
     public List<BrewerResponse> listBrewerByName(@PathParam("name") String name) {
@@ -41,6 +64,13 @@ public class BrewerResources {
                 .toList();
         }
 
+    /**
+     * <p>listBrewerByName.</p>
+     *
+     * @param name a {@link java.lang.String} object
+     * @param pageNum a long
+     * @return a {@link java.util.List} object
+     */
     @GET
     @Path("/brewer/{name}/page/{pageNum}")
     public List<BrewerResponse> listBrewerByName(@PathParam("name") String name,
@@ -52,6 +82,13 @@ public class BrewerResources {
                 .stream().map(BrewerResponse::of).toList();
         }
 
+    /**
+     * <p>add.</p>
+     *
+     * @param id a int
+     * @param request a {@link org.redlich.beers.BrewerRequest} object
+     * @return a {@link org.redlich.beers.BrewerResponse} object
+     */
     @POST
     @Path("/{id}")
     public BrewerResponse add(@PathParam("id") int id, BrewerRequest request) {
@@ -59,12 +96,20 @@ public class BrewerResources {
         return BrewerResponse.of(brewerService.add(brewer));
         }
 
+    /**
+     * <p>remove.</p>
+     *
+     * @param id a int
+     */
     @Path("/{id}")
     @DELETE
     public void remove(@PathParam("id") int id) {
         brewerService.remove(id);
         }
 
+    /**
+     * <p>removeAll.</p>
+     */
     @DELETE
     public void removeAll() {
         brewerService.removeAll();

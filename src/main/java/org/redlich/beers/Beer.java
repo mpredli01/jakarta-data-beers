@@ -10,6 +10,9 @@ import java.util.Objects;
 
 /**
  * A POJO representing the Beer collection in the MongoDB database.
+ *
+ * @author mpredli01
+ * @version $Id: $Id
  */
 @Entity
 public class Beer {
@@ -45,7 +48,7 @@ public class Beer {
     private double abv;
 
     /**
-     *
+     * <p>Constructor for Beer.</p>
      */
     public Beer() {
         id = 0;
@@ -72,6 +75,8 @@ public class Beer {
         }
 
     /**
+     * <p>Getter for the field <code>id</code>.</p>
+     *
      * @return id the primary key the Beer entity.
      */
     public int getId() {
@@ -79,6 +84,8 @@ public class Beer {
         }
 
     /**
+     * <p>Getter for the field <code>name</code>.</p>
+     *
      * @return name the name of the beer.
      */
     public String getName() {
@@ -86,6 +93,8 @@ public class Beer {
     }
 
     /**
+     * <p>Getter for the field <code>type</code>.</p>
+     *
      * @return the beer type.
      */
     public BeerType getType() {
@@ -93,6 +102,8 @@ public class Beer {
     }
 
     /**
+     * <p>Getter for the field <code>brewerId</code>.</p>
+     *
      * @return brewerId the value of `brewerId` from the Brewer entity.
      */
     public int getBrewerId() {
@@ -100,15 +111,15 @@ public class Beer {
     }
 
     /**
+     * <p>Getter for the field <code>abv</code>.</p>
+     *
      * @return abv the value of `abv`.
      */
     public double getAbv() {
         return abv;
         }
 
-    /**
-     * @return string a string to encapsulate all the values
-     */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Beer { " +
@@ -120,11 +131,7 @@ public class Beer {
                 " }\n";
         }
 
-    /**
-     *
-     * @param o the object for comparison
-     * @return boolean the result of the equals comparison
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -137,16 +144,14 @@ public class Beer {
                 && type == beer.type;
         }
 
-    /**
-     *
-     * @return int an integer resulting from the hashCode.
-     */
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return Objects.hash(id, name, type, brewerId, abv);
         }
 
     /**
+     * <p>builder.</p>
      *
      * @return BeerBuilder a new instance of the BeerBuilder.
      */
