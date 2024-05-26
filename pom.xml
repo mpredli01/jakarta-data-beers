@@ -50,7 +50,12 @@
             <artifactId>jnosql-mapping-validation</artifactId>
             <version>${jnosql.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.eclipse.jnosql.metamodel</groupId>
+            <artifactId>mapping-metamodel-processor</artifactId>
+            <version>${jnosql.version}</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.eclipse.microprofile.config</groupId>
             <artifactId>microprofile-config-api</artifactId>
