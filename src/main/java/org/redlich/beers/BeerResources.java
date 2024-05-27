@@ -1,7 +1,7 @@
 package org.redlich.beers;
 
-import jakarta.data.Sort;
-import jakarta.data.page.Pageable;
+import jakarta.data.Order;
+import jakarta.data.page.PageRequest;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -72,10 +72,12 @@ public class BeerResources {
     @Path("/brewer/{brewer}/page/{pageNum}")
     public List<BeerResponse> listBeersByBrewer(@PathParam("brewer") String brewerName,
                                                 @PathParam("pageNum") long pageNum) {
-        Pageable pageRequest = Pageable.ofSize(5)
-                .page(pageNum)
-                .sortBy(Sort.asc("name"), Sort.asc("id"));
-        return beerService.listBeersByBrewer(brewerName, pageRequest).stream()
+        PageRequest pageRequest = PageRequest.ofPage(pageNum)
+                .size(5);
+
+        Order<Beer> order = Order.by(_Beer.name.asc(),_Beer.id.asc());
+
+        return beerService.listBeersByBrewer(brewerName, pageRequest, order).stream()
                 .map(BeerResponse::of).toList();
         }
 

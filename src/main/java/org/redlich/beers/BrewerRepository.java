@@ -1,7 +1,8 @@
 package org.redlich.beers;
 
+import jakarta.data.Order;
 import jakarta.data.page.Page;
-import jakarta.data.page.Pageable;
+import jakarta.data.page.PageRequest;
 import jakarta.data.repository.Delete;
 import jakarta.data.repository.Repository;
 import jakarta.data.repository.DataRepository;
@@ -48,10 +49,20 @@ public interface BrewerRepository extends DataRepository<Brewer, Integer> {
      * <p>findByNameLike.</p>
      *
      * @param name a {@link java.lang.String} object
-     * @param pageable a {@link jakarta.data.page.Pageable} object
+     * @param pageRequest a {@link jakarta.data.page.PageRequest} object
      * @return a {@link jakarta.data.page.Page} object
      */
-    Page<Brewer> findByNameLike(String name, Pageable pageable);
+    Page<Brewer> findByNameLike(String name, PageRequest pageRequest);
+
+    /**
+     * <p>findByNameLike.</p>
+     *
+     * @param name a {@link java.lang.String} object
+     * @param pageRequest a {@link jakarta.data.page.PageRequest} object
+     * @param order a {@link jakarta.data.page.Order} object
+     * @return a {@link jakarta.data.page.Page} object
+     */
+    Page<Brewer> findByNameLike(String name, PageRequest pageRequest, Order<Brewer> order);
 
     /**
      * <p>save.</p>
@@ -73,7 +84,7 @@ public interface BrewerRepository extends DataRepository<Brewer, Integer> {
     /**
      * <p>deleteAll.</p>
      */
-    @Query("delete from Brewer")
+    @Query("DELETE FROM Brewer")
     void deleteAll();
     }
 

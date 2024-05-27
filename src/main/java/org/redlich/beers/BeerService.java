@@ -1,7 +1,8 @@
 package org.redlich.beers;
 
+import jakarta.data.Order;
 import jakarta.data.page.Page;
-import jakarta.data.page.Pageable;
+import jakarta.data.page.PageRequest;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
@@ -59,14 +60,31 @@ public class BeerService {
      * <p>listBeersByBrewer.</p>
      *
      * @param brewerName a {@link java.lang.String} object
-     * @param pageable a {@link jakarta.data.page.Pageable} object
+     * @param pageRequest a {@link jakarta.data.page.PageRequest} object
+     * @param order a {@link jakarta.data.Order} object
      * @return a {@link jakarta.data.page.Page} object
      */
-    public Page<Beer> listBeersByBrewer(String brewerName, Pageable pageable) {
+    public Page<Beer> listBeersByBrewer(String brewerName, PageRequest pageRequest) {
         return beerRepository.findByBrewerIdIn(
                 brewerRepository.findByNameLike(brewerName)
                         .map(Brewer::getId)
-                        .toList(), pageable);
+                        .toList(), pageRequest);
+        }
+
+
+    /**
+     * <p>listBeersByBrewer.</p>
+     *
+     * @param brewerName a {@link java.lang.String} object
+     * @param pageRequest a {@link jakarta.data.page.PageRequest} object
+     * @param order a {@link jakarta.data.Order} object
+     * @return a {@link jakarta.data.page.Page} object
+     */
+    public Page<Beer> listBeersByBrewer(String brewerName, PageRequest pageRequest, Order<Beer> order) {
+        return beerRepository.findByBrewerIdIn(
+                brewerRepository.findByNameLike(brewerName)
+                        .map(Brewer::getId)
+                        .toList(), pageRequest, order);
         }
 
     /**

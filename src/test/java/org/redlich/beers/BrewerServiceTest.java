@@ -1,6 +1,6 @@
 package org.redlich.beers;
 
-import jakarta.data.page.Pageable;
+import jakarta.data.page.PageRequest;
 import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.AfterEach;
@@ -133,19 +133,19 @@ class BrewerServiceTest extends BaseTest {
 
             String brewerName = brewersAAAA.get(0).getName();
 
-            var page1 = brewerService.listBrewersByNameLike(brewerName, Pageable.ofSize(2));
+            var page1 = brewerService.listBrewersByNameLike(brewerName, PageRequest.ofSize(2));
 
             softly.assertThat(page1.stream().toList())
                     .as("the returned page 1 should contain the first 2 beers of brewer " + brewerName)
                     .containsAll(brewersAAAA.subList(0, 2));
 
-            var page2 = brewerService.listBrewersByNameLike(brewerName, page1.pageable().next());
+            var page2 = brewerService.listBrewersByNameLike(brewerName, page1.nextPageRequest());
 
             softly.assertThat(page2.stream().toList())
                     .as("the returned page 2 should contain the last 2 beers of brewer " + brewerName)
                     .containsAll(brewersAAAA.subList(2, 4));
 
-            var page3 = brewerService.listBrewersByNameLike(brewerName, page2.pageable().next());
+            var page3 = brewerService.listBrewersByNameLike(brewerName, page2.nextPageRequest());
 
             softly.assertThat(page3.stream().toList())
                     .as("the returned page 3 should be empty")
