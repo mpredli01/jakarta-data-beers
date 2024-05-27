@@ -1,7 +1,8 @@
 package org.redlich.beers;
 
+import jakarta.data.Order;
 import jakarta.data.page.Page;
-import jakarta.data.page.Pageable;
+import jakarta.data.page.PageRequest;
 import jakarta.data.repository.Delete;
 import jakarta.data.repository.Repository;
 import jakarta.data.repository.DataRepository;
@@ -51,10 +52,20 @@ public interface BeerRepository extends DataRepository<Beer, Integer> {
      * <p>findByBrewerIdIn.</p>
      *
      * @param brewerIds a {@link java.util.List} object
-     * @param pageable a {@link jakarta.data.page.Pageable} object
+     * @param pageRequest a {@link jakarta.data.page.PageRequest} object
      * @return a {@link jakarta.data.page.Page} object
      */
-    Page<Beer> findByBrewerIdIn(List<Integer> brewerIds, Pageable pageable);
+    Page<Beer> findByBrewerIdIn(List<Integer> brewerIds, PageRequest pageRequest);
+
+        /**
+     * <p>findByBrewerIdIn.</p>
+     *
+     * @param brewerIds a {@link java.util.List} object
+     * @param pageRequest a {@link jakarta.data.page.PageRequest} object
+     * @param order a {@link jakarta.data.Order} object 
+     * @return a {@link jakarta.data.page.Page} object
+     */
+    Page<Beer> findByBrewerIdIn(List<Integer> brewerIds, PageRequest pageRequest, Order<Beer> order);
 
     /**
      * <p>save.</p>
@@ -79,13 +90,13 @@ public interface BeerRepository extends DataRepository<Beer, Integer> {
      * @param name a {@link java.lang.String} object
      * @return a {@link java.util.Set} object
      */
-    @Query("select * from Beer where name = @name")
+    @Query("SELECT * FROM Beer WHERE name = :name")
     Set<Beer> query(@Param("name") String name);
 
     /**
      * <p>deleteAll.</p>
      */
-    @Query("delete from Beer")
+    @Query("DELETE FROM Beer")
     void deleteAll();
 
     /**
@@ -93,6 +104,6 @@ public interface BeerRepository extends DataRepository<Beer, Integer> {
      *
      * @param brewerId a int
      */
-    @Query("delete from Beer where brewerId = @brewerId")
+    @Query("DELETE FROM Beer WHERE brewerId = :brewerId")
     void deleteByBrewerId(@Param("brewerId") int brewerId);
     }
